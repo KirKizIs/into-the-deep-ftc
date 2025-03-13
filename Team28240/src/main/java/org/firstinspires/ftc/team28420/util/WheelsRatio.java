@@ -14,7 +14,6 @@ public class WheelsRatio {
     public static final WheelsRatio ZERO = new WheelsRatio(0, 0, 0, 0);
 
     public void multiply(double k) {
-        //jopa goida mamekirilaprivet
         leftFront *= k;
         rightFront *= k;
         leftBack *= k;
