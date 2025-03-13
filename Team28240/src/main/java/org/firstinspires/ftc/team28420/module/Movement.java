@@ -4,12 +4,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+import org.firstinspires.ftc.team28420.util.Vars;
 import org.firstinspires.ftc.team28420.util.WheelsRatio;
 
 public class Movement {
-
-    // TODO util.Vars -> telemetry
-    // TODO Telemetry telemetry = util.Vars.telemetry;
 
     public DcMotorEx leftFront, rightFront, leftBack, rightBack;
 
@@ -21,7 +19,7 @@ public class Movement {
     }
 
     public void setMotorsTargetPosition(WheelsRatio wheelsRatio) {
-        wheelsRatio.multiply(0/*TODO Vars.MAX_VELOCITY*/);
+        wheelsRatio.multiply(Vars.MAX_VELOCITY);
         leftFront.setTargetPosition((int) wheelsRatio.leftFront);
         rightFront.setTargetPosition((int) wheelsRatio.rightFront);
         leftBack.setTargetPosition((int) wheelsRatio.leftBack);

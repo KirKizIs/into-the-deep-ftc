@@ -6,28 +6,21 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
-import org.firstinspires.ftc.team28420.util.Axes;
+import org.firstinspires.ftc.team28420.util.Vars;
 
 public class Gyroscope {
 
     private BHI260IMU imu;
 
-    //TODO move this to const vars class
-    public final RevHubOrientationOnRobot.LogoFacingDirection logoFacingDirection =
-            RevHubOrientationOnRobot.LogoFacingDirection.UP;
-    public final RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
-            RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
-
     public Gyroscope(BHI260IMU imu) {
         this.imu = imu;
     }
 
-    public void init() {
+    public void setup() {
         IMU.Parameters orientation = new IMU.Parameters(
-                new RevHubOrientationOnRobot(logoFacingDirection, usbFacingDirection));
+                new RevHubOrientationOnRobot(Vars.logoFacingDirection, Vars.usbFacingDirection));
         imu.initialize(orientation);
         imu.resetYaw();
     }
@@ -35,7 +28,8 @@ public class Gyroscope {
     public YawPitchRollAngles getOrientation() {
         return imu.getRobotYawPitchRollAngles();
     }
-    public double getAngle(Axes axis) {
+
+    public double getAngle(Vars.Axis axis) {
         switch (axis) {
             case X:
                 return imu.getRobotYawPitchRollAngles().getPitch(AngleUnit.RADIANS);
