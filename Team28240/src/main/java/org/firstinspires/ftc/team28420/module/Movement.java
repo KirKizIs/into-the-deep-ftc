@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.team28420.modules;
+package org.firstinspires.ftc.team28420.module;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
