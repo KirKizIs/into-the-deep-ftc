@@ -8,7 +8,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class BigKostyl {
 
-    private static Telemetry telemetry = null;
+    public static Telemetry telemetry = null;
     private Belt belt = null;
     private Claws claws = null;
     private Wrist wrist = null;
@@ -17,6 +17,14 @@ public class BigKostyl {
         belt = new Belt(beltMotor);
         wrist = new Wrist(wristServo);
         claws = new Claws(clawsServo);
+    }
+
+    void updateTelemetry() {
+        telemetry.addData("Belt motor position: ", belt.getCurrentMotorPosition());
+        telemetry.addData("Claws servo position: ", claws.getCurrentServoPosition());
+        telemetry.addData("Wrist servo position: ", claws.getCurrentServoPosition());
+
+        telemetry.update();
     }
 
     public void handleJoystick(Gamepad gamepad) {

@@ -16,4 +16,8 @@ class Claws {
     public void leave() {
         servo.setPosition(0);
     }
+
+    public double getCurrentServoPosition() {
+        return servo.getPosition();
+    }
 }

@@ -33,4 +33,8 @@ class Belt {
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
+    public double getCurrentMotorPosition() {
+        return motor.getCurrentPosition();
+    }
+
 }
