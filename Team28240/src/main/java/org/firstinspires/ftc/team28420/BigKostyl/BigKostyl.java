@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.team28420.BigKostyl;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -28,6 +29,20 @@ public class BigKostyl {
     }
 
     public void handleJoystick(Gamepad gamepad) {
+        belt.setVelocity((int)(gamepad.right_stick_y * Belt.TURN_VELOCITY));
+        if(gamepad.square) {
+            belt.setVelocity(0);
+        }
 
+        if(gamepad.triangle)
+            wrist.turnUp();
+        else if(gamepad.circle)
+            wrist.turnStraight();
+        else if(gamepad.cross)
+            wrist.turnDown();
+
+        if(gamepad.right_trigger > 0)
+            claws.take(gamepad.right_trigger);
+        else claws.leave();
     }
 }

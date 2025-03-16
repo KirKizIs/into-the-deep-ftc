@@ -10,7 +10,7 @@ class Claws {
 
     public void take(double compressionForce) {
         // TODO: calibrate
-        servo.setPosition(0.5 + compressionForce*2);
+        servo.setPosition(1);
     }
 
     public void leave() {
