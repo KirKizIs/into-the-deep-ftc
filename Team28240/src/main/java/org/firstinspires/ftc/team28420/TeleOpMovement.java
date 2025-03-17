@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.team28420.module.Gyroscope;
 import org.firstinspires.ftc.team28420.module.Movement;
+import org.firstinspires.ftc.team28420.module.Joystick;
 import org.firstinspires.ftc.team28420.util.Vars;
 
 @TeleOp(name = "basic movement", group = "test")
@@ -20,6 +21,8 @@ public class TeleOpMovement extends LinearOpMode {
 
     Gyroscope gyroscope = new Gyroscope(
             hardwareMap.get(BHI260IMU.class, "imu"));
+
+    Joystick joystick = new Joystick(gamepad1);
 
     @Override
     public void runOpMode() {
