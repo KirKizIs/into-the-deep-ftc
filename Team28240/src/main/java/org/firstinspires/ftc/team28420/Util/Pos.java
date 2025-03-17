@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.team28420.Util;
 
-public class Vector2d {
+public class Pos {
     public double x, y;
-    public Vector2d(double x, double y) {
+    public Pos(double x, double y) {
         this.x = x;
         this.y = y;
     }

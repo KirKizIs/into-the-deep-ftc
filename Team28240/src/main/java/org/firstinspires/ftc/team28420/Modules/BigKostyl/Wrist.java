@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.team28420.BigKostyl;
+package org.firstinspires.ftc.team28420.Modules.BigKostyl;
 
 import com.qualcomm.robotcore.hardware.Servo;
 

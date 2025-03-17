@@ -1,30 +1,30 @@
 package org.firstinspires.ftc.team28420.EventSystem;
 
-import org.firstinspires.ftc.team28420.Util.Vector2d;
+import org.firstinspires.ftc.team28420.Util.Pos;
 
 public class EventValue {
     private double value;
-    private Vector2d stickValue;
+    private Pos stickValue;
 
-    boolean isPair = false;
+    boolean asPair = false;
 
-    EventValue(double value) {
-        isPair = false;
+    public EventValue(double value) {
+        asPair = false;
         this.value = value;
     }
 
-    EventValue(double x, double y) {
-        isPair = true;
-        stickValue = new Vector2d(x,y);
+    public EventValue(double x, double y) {
+        asPair = true;
+        stickValue = new Pos(x,y);
     }
 
     public double getValue() throws InvalidEventValueException {
-        if(isPair) throw new InvalidEventValueException();
+        if(asPair) throw new InvalidEventValueException();
 
         return value;
     }
-    public Vector2d getStickValue() throws InvalidEventValueException{
-        if(!isPair) throw new InvalidEventValueException();
+    public Pos getStickValue() throws InvalidEventValueException{
+        if(!asPair) throw new InvalidEventValueException();
 
         return stickValue;
     }

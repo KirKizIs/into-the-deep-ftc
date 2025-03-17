@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.team28420.BigKostyl;
+package org.firstinspires.ftc.team28420.Modules.BigKostyl;
 
 //import org.firstinspires.ftc.team28420.EventSystem;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -10,7 +10,7 @@ import org.firstinspires.ftc.team28420.EventSystem.EventListener;
 import org.firstinspires.ftc.team28420.EventSystem.EventType;
 import org.firstinspires.ftc.team28420.EventSystem.EventValue;
 import org.firstinspires.ftc.team28420.EventSystem.InvalidEventValueException;
-import org.firstinspires.ftc.team28420.Util.Vector2d;
+import org.firstinspires.ftc.team28420.Util.Pos;
 
 public class BigKostyl implements EventListener {
 
@@ -38,7 +38,7 @@ public class BigKostyl implements EventListener {
         try {
             switch (ev) {
             case RightStickMoved:
-                Vector2d rightStickValue = value.getStickValue();
+                Pos rightStickValue = value.getStickValue();
                 belt.setVelocity((int) (rightStickValue.y * Belt.TURN_VELOCITY));
                 break;
             case TrianglePressed:
