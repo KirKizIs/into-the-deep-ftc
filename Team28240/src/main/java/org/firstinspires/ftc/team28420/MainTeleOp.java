@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.team28420.Modules.BigKostyl.BigKostyl;
-import org.firstinspires.ftc.team28420.Modules.Joystick;
+import org.firstinspires.ftc.team28420.modules.bigkostyl.BigKostyl;
+import org.firstinspires.ftc.team28420.modules.Joystick;
 
 @TeleOp(name = "main teleop", group = "TeleOp")
 public class MainTeleOp extends LinearOpMode {

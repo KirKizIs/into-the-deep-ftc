@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.team28420.Modules.BigKostyl;
+package org.firstinspires.ftc.team28420.modules.bigkostyl;
 
 //import org.firstinspires.ftc.team28420.EventSystem;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -6,11 +6,11 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.team28420.EventSystem.EventListener;
-import org.firstinspires.ftc.team28420.EventSystem.EventType;
-import org.firstinspires.ftc.team28420.EventSystem.EventValue;
-import org.firstinspires.ftc.team28420.EventSystem.InvalidEventValueException;
-import org.firstinspires.ftc.team28420.Util.Pos;
+import org.firstinspires.ftc.team28420.eventsystem.EventListener;
+import org.firstinspires.ftc.team28420.eventsystem.EventType;
+import org.firstinspires.ftc.team28420.eventsystem.EventValue;
+import org.firstinspires.ftc.team28420.eventsystem.InvalidEventValueException;
+import org.firstinspires.ftc.team28420.util.Pos;
 
 public class BigKostyl implements EventListener {
 

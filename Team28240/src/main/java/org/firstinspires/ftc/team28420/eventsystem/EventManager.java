@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.team28420.EventSystem;
+package org.firstinspires.ftc.team28420.eventsystem;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

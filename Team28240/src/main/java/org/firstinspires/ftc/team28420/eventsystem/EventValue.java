@@ -1,6 +1,6 @@
-package org.firstinspires.ftc.team28420.EventSystem;
+package org.firstinspires.ftc.team28420.eventsystem;
 
-import org.firstinspires.ftc.team28420.Util.Pos;
+import org.firstinspires.ftc.team28420.util.Pos;
 
 public class EventValue {
     private double value;

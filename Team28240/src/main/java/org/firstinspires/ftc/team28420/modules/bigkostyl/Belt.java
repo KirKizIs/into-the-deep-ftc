@@ -1,8 +1,7 @@
-package org.firstinspires.ftc.team28420.Modules.BigKostyl;
+package org.firstinspires.ftc.team28420.modules.bigkostyl;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 class Belt {
     public DcMotor motor = null;

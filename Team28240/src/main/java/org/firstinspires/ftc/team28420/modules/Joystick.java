@@ -1,16 +1,12 @@
-package org.firstinspires.ftc.team28420.Modules;
-
-import android.util.EventLog;
+package org.firstinspires.ftc.team28420.modules;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.team28420.EventSystem.EventListener;
-import org.firstinspires.ftc.team28420.EventSystem.EventManager;
-import org.firstinspires.ftc.team28420.EventSystem.EventType;
-import org.firstinspires.ftc.team28420.EventSystem.EventValue;
-import org.firstinspires.ftc.team28420.Util.Pair;
-import org.firstinspires.ftc.team28420.Util.Pos;
-import org.firstinspires.ftc.team28420.Util.PolarVector;
+import org.firstinspires.ftc.team28420.eventsystem.EventManager;
+import org.firstinspires.ftc.team28420.eventsystem.EventType;
+import org.firstinspires.ftc.team28420.eventsystem.EventValue;
+import org.firstinspires.ftc.team28420.util.Pair;
+import org.firstinspires.ftc.team28420.util.Pos;
 
 import java.util.ArrayList;
 import java.util.List;
