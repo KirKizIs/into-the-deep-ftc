@@ -21,7 +21,11 @@ public class Vars {
         public final static RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
                 RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
     }
-
+    //goyda
+    // kanon
+    // kukan
+    // / ya sosu
+    // anonimno pz
     public static class Util {
         public static Telemetry telemetry;
     }
