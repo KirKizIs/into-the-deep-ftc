@@ -14,10 +14,10 @@ import org.firstinspires.ftc.team28420.util.Vars;
 public class TeleOpMovement extends LinearOpMode {
 
     Movement movement = new Movement(
-            hardwareMap.get(DcMotorEx.class, Vars.LEFT_FRONT_MOTOR_NAME),
-            hardwareMap.get(DcMotorEx.class, Vars.RIGHT_FRONT_MOTOR_NAME),
-            hardwareMap.get(DcMotorEx.class, Vars.LEFT_BACK_MOTOR_NAME),
-            hardwareMap.get(DcMotorEx.class, Vars.RIGHT_BACK_MOTOR_NAME));
+            hardwareMap.get(DcMotorEx.class, Vars.Movement.LEFT_FRONT_MOTOR_NAME),
+            hardwareMap.get(DcMotorEx.class, Vars.Movement.RIGHT_FRONT_MOTOR_NAME),
+            hardwareMap.get(DcMotorEx.class, Vars.Movement.LEFT_BACK_MOTOR_NAME),
+            hardwareMap.get(DcMotorEx.class, Vars.Movement.RIGHT_BACK_MOTOR_NAME));
 
     Gyroscope gyroscope = new Gyroscope(
             hardwareMap.get(BHI260IMU.class, "imu"));
@@ -26,7 +26,7 @@ public class TeleOpMovement extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        Vars.telemetry = telemetry;
+        Vars.Util.telemetry = telemetry;
 
         movement.setup();
         gyroscope.setup();

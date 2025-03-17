@@ -19,7 +19,7 @@ public class Movement {
     }
 
     public void setMotorsTargetPosition(WheelsRatio wheelsRatio) {
-        wheelsRatio.multiply(Vars.MAX_VELOCITY);
+        wheelsRatio.multiply(Vars.Movement.MAX_VELOCITY);
         leftFront.setTargetPosition((int) wheelsRatio.leftFront);
         rightFront.setTargetPosition((int) wheelsRatio.rightFront);
         leftBack.setTargetPosition((int) wheelsRatio.leftBack);

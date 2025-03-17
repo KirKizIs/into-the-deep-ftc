@@ -12,10 +12,6 @@ public class Joystick {
         this.gamepad = gamepad;
     }
 
-    public static Vars.Vector getVectorFromPos(Vars.Pos pos) {
-        return new Vars.Vector(Math.atan2(pos.y, pos.x), Math.hypot(pos.x, pos.y));
-    }
-
     public Vars.Pos getLeftStickPos() {
         return new Vars.Pos(gamepad.left_stick_x, gamepad.left_stick_y);
     }
