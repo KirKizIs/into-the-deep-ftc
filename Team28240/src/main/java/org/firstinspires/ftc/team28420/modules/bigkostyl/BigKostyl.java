@@ -19,16 +19,17 @@ public class BigKostyl implements EventListener {
     private Claws claws = null;
     private Wrist wrist = null;
 
-    public BigKostyl(DcMotor beltMotor, Servo wristServo, Servo clawsServo, Telemetry telemetry) {
+    public BigKostyl(DcMotor beltMotor, Servo wristServo, Servo clawsServo, Telemetry telem) {
         belt = new Belt(beltMotor);
         wrist = new Wrist(wristServo);
         claws = new Claws(clawsServo);
+        BigKostyl.telemetry = telem;
     }
 
-    void updateTelemetry() {
+    public void updateTelemetry() {
         telemetry.addData("Belt motor position: ", belt.getCurrentMotorPosition());
+        telemetry.addData("Wrist servo position: ", wrist.getCurrentServoPosition());
         telemetry.addData("Claws servo position: ", claws.getCurrentServoPosition());
-        telemetry.addData("Wrist servo position: ", claws.getCurrentServoPosition());
 
         telemetry.update();
     }
@@ -36,46 +37,21 @@ public class BigKostyl implements EventListener {
     @Override
     public void update(EventType ev, EventValue value) {
         try {
-            switch (ev) {
-            case RightStickMoved:
+            if(ev == EventType.RightStickMoved) {
                 Pos rightStickValue = value.getStickValue();
-                belt.setVelocity((int) (rightStickValue.y * Belt.TURN_VELOCITY));
-                break;
-            case TrianglePressed:
+                belt.setVelocity((int) (-rightStickValue.y * Belt.TURN_VELOCITY));
+            } else if(ev == EventType.TrianglePressed)
                 wrist.turnUp();
-                break;
-            case CirclePressed:
+            else if(ev == EventType.CirclePressed)
                 wrist.turnStraight();
-                break;
-            case CrossPressed:
+            else if(ev == EventType.CrossPressed)
                 wrist.turnDown();
-                break;
-            case RightTriggerMoved:
+            else if(ev == EventType.RightTriggerMoved)
                 if(value.getValue() > 0)
                     claws.take(value.getValue());
                 else claws.leave();
-                break;
-            }
         } catch(InvalidEventValueException e) {
             System.err.println("Unexpected EventValue type");
         }
-    }
-
-    public void handleJoystick(Gamepad gamepad) {
-        /*belt.setVelocity((int)(gamepad.right_stick_y * Belt.TURN_VELOCITY));
-        if(gamepad.square) {
-            belt.setVelocity(0);
-        }
-
-        if(gamepad.triangle)
-            wrist.turnUp();
-        else if(gamepad.circle)
-            wrist.turnStraight();
-        else if(gamepad.cross)
-            wrist.turnDown();
-
-        if(gamepad.right_trigger > 0)
-            claws.take(gamepad.right_trigger);
-        else claws.leave();*/
     }
 }

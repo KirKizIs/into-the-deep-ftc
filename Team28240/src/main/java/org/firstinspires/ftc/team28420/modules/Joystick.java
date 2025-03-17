@@ -5,20 +5,47 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import org.firstinspires.ftc.team28420.eventsystem.EventManager;
 import org.firstinspires.ftc.team28420.eventsystem.EventType;
 import org.firstinspires.ftc.team28420.eventsystem.EventValue;
+import org.firstinspires.ftc.team28420.eventsystem.JoystickStateChangeObserver;
 import org.firstinspires.ftc.team28420.util.Pair;
 import org.firstinspires.ftc.team28420.util.Pos;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Joystick{
     public Gamepad gamepad;
-    public Gamepad prevGamepad = null;
     public EventManager events;
+    private final JoystickStateChangeObserver observer = new JoystickStateChangeObserver(this);
 
     public Joystick(Gamepad gamepad) {
         this.events = new EventManager();
         this.gamepad = gamepad;
+
+    }
+
+    public void copy(Joystick other) {
+        this.gamepad = other.gamepad;
+
+        this.gamepad.left_stick_y = other.gamepad.left_stick_y;
+        this.gamepad.left_stick_x = other.gamepad.left_stick_x;
+        this.gamepad.right_stick_y = other.gamepad.right_stick_y;
+        this.gamepad.right_stick_x = other.gamepad.right_stick_x;
+
+        this.gamepad.left_bumper = other.gamepad.left_bumper;
+        this.gamepad.right_bumper = other.gamepad.right_bumper;
+
+        this.gamepad.left_trigger = other.gamepad.left_trigger;
+        this.gamepad.right_trigger = other.gamepad.right_trigger;
+
+        this.gamepad.dpad_up = other.gamepad.dpad_up;
+        this.gamepad.dpad_down = other.gamepad.dpad_down;
+        this.gamepad.dpad_left = other.gamepad.dpad_left;
+        this.gamepad.dpad_right = other.gamepad.dpad_right;
+
+        this.gamepad.triangle = other.gamepad.triangle;
+        this.gamepad.cross= other.gamepad.cross;
+        this.gamepad.circle = other.gamepad.circle;
+        this.gamepad.square = other.gamepad.square;
+
     }
 
     public Pos getLeftStickPos() {
@@ -29,91 +56,57 @@ public class Joystick{
         return new Pos(gamepad.right_stick_x, gamepad.right_stick_y);
     }
 
-    List<Pair<EventType, EventValue>> composeEventsList() {
-        List<Pair<EventType, EventValue>> eventsList = new ArrayList<>();
+    public boolean getTriangleButton() {
+        return gamepad.triangle;
+    }
+    public boolean getSquareButton() {
+        return gamepad.square;
+    }
+    public boolean getCircleButton() {
+        return gamepad.circle;
+    }
+    public boolean getCrossButton() {
+        return gamepad.cross;
+    }
 
-        /* Sticks */
-        if(gamepad.left_stick_x != prevGamepad.left_stick_x)
-            eventsList.add(new Pair<>(EventType.LeftStickMoved,
-                    new EventValue(gamepad.left_stick_x,gamepad.left_stick_y)));
+    public boolean getDPadUpButton() {
+        return gamepad.dpad_up;
+    }
+    public boolean getDPadDownButton() {
+        return gamepad.dpad_down;
+    }
+    public boolean getDPadLeftButton() {
+        return gamepad.dpad_left;
+    }
+    public boolean getDPadRightButton() {
+        return gamepad.dpad_right;
+    }
 
-        if(gamepad.right_stick_x != prevGamepad.right_stick_x)
-            eventsList.add(new Pair<>(EventType.RightStickMoved,
-                    new EventValue(gamepad.right_stick_x,gamepad.right_stick_y)));
+    public boolean getRightBumperButton() {
+        return gamepad.right_bumper;
+    }
+    public boolean getLeftBumperButton() {
+        return gamepad.left_bumper;
+    }
 
-        /* Figure Buttons */
-        if(gamepad.triangle != prevGamepad.triangle)
-            eventsList.add(new Pair<>(EventType.TrianglePressed,
-                    new EventValue(
-                            (gamepad.triangle?1:0)
-                    )));
-        if(gamepad.circle != prevGamepad.circle)
-            eventsList.add(new Pair<>(EventType.CirclePressed,
-                    new EventValue(
-                            (gamepad.circle?1:0)
-                    )));
-        if(gamepad.cross != prevGamepad.cross)
-            eventsList.add(new Pair<>(EventType.CrossPressed,
-                    new EventValue(
-                            (gamepad.cross?1:0)
-                    )));
-        if(gamepad.square != prevGamepad.square)
-            eventsList.add(new Pair<>(EventType.SquarePressed,
-                    new EventValue(
-                            (gamepad.square?1:0)
-                    )));
+    public double getRightTrigger() {
+        return gamepad.right_trigger;
+    }
+    public double getLeftTrigger() {
+        return gamepad.left_trigger;
+    }
 
-        /* Triggers */
-        if(gamepad.left_trigger != prevGamepad.left_trigger)
-            eventsList.add(new Pair<>(EventType.LeftTriggerMoved,
-                    new EventValue(
-                            gamepad.left_trigger
-                    )));
-        if(gamepad.right_trigger != prevGamepad.right_trigger)
-            eventsList.add(new Pair<>(EventType.RightTriggerMoved,
-                    new EventValue(
-                            gamepad.right_trigger
-                    )));
-
-        /* Bumpers */
-        if(gamepad.left_bumper != prevGamepad.left_bumper)
-            eventsList.add(new Pair<>(EventType.LeftBumperPressed,
-                    new EventValue(
-                            (gamepad.left_bumper?1:0)
-                    )));
-        if(gamepad.right_bumper != prevGamepad.right_bumper)
-            eventsList.add(new Pair<>(EventType.RightBumperPressed,
-                    new EventValue(
-                            (gamepad.right_bumper?1:0)
-                    )));
-
-
-        /* DPads */
-        if(gamepad.dpad_up != prevGamepad.dpad_up)
-            eventsList.add(new Pair<>(EventType.DPadUpPressed,
-                    new EventValue(
-                            (gamepad.dpad_up?1:0)
-                    )));
-        if(gamepad.dpad_down != prevGamepad.dpad_down)
-            eventsList.add(new Pair<>(EventType.DPadUpPressed,
-                    new EventValue(
-                            (gamepad.dpad_up?1:0)
-                    )));
-        if(gamepad.dpad_left != prevGamepad.dpad_left)
-            eventsList.add(new Pair<>(EventType.DPadLeftPressed,
-                    new EventValue(
-                            (gamepad.dpad_left?1:0)
-                    )));
-        if(gamepad.dpad_right != prevGamepad.dpad_right)
-            eventsList.add(new Pair<>(EventType.DPadRightPressed,
-                    new EventValue(
-                            (gamepad.dpad_right?1:0)
-                    )));
-        return eventsList;
+    public Pos getLeftStick() {
+        return new Pos(gamepad.left_stick_x, gamepad.left_stick_y);
+    }
+    public Pos getRightStick() {
+        return new Pos(gamepad.right_stick_x, gamepad.right_stick_y);
     }
 
     public void update() {
-        List<Pair<EventType, EventValue>> pendingEvents = composeEventsList();
+        observer.update();
+
+        List<Pair<EventType, EventValue>> pendingEvents = observer.composeEventsList();
         for(Pair<EventType, EventValue> ev : pendingEvents)
             events.notifyEvent(ev.first, ev.second);
     }

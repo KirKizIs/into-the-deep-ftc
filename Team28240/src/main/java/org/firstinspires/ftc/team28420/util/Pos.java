@@ -7,4 +7,14 @@ public class Pos {
         this.y = y;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if(this == other) return true;
+        if (other == null || other.getClass() != this.getClass())
+            return false;
+
+        Pos pos = (Pos) other;
+        return (this.x == pos.x) && (this.y == pos.y);
+    }
+
 }

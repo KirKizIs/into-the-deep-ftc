@@ -11,7 +11,6 @@ import org.firstinspires.ftc.team28420.modules.Joystick;
 
 @TeleOp(name = "main teleop", group = "TeleOp")
 public class MainTeleOp extends LinearOpMode {
-    public static Telemetry telem;
     public BigKostyl grabber = null;
 
     Joystick joystick;
@@ -22,18 +21,18 @@ public class MainTeleOp extends LinearOpMode {
 
         waitForStart();
 
-
         while(opModeIsActive()) {
             joystick.update();
-
+            grabber.updateTelemetry();
         }
     }
     private void initHardware() {
+        joystick = new Joystick(gamepad1);
         grabber = new BigKostyl(
                 hardwareMap.get(DcMotor.class, "beltMotor"),
                 hardwareMap.get(Servo.class, "wristServo"),
                 hardwareMap.get(Servo.class, "clawServo"),
-                telem);
+                telemetry);
     }
 
 
