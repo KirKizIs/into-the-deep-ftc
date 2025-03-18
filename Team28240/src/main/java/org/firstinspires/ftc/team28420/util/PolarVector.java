@@ -6,4 +6,9 @@ public class PolarVector {
         this.theta = theta;
         this.abs = abs;
     }
+
+    public static PolarVector getVectorFromPos(Pos pos) {
+        return new PolarVector(Math.atan2(pos.y, pos.x), Math.hypot(pos.x, pos.y));
+    }
+
 }
