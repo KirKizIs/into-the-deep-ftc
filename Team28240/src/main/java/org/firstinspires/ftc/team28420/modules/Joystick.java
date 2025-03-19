@@ -8,6 +8,7 @@ import org.firstinspires.ftc.team28420.eventsystem.EventValue;
 import org.firstinspires.ftc.team28420.eventsystem.JoystickStateChangeObserver;
 import org.firstinspires.ftc.team28420.util.Pair;
 import org.firstinspires.ftc.team28420.util.Pos;
+import org.firstinspires.ftc.team28420.util.Vars;
 
 import java.util.List;
 
@@ -46,6 +47,32 @@ public class Joystick{
         this.gamepad.circle = other.gamepad.circle;
         this.gamepad.square = other.gamepad.square;
 
+    }
+    @Override
+    public String toString() {
+        if(gamepad == null) return "";
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("LeftStick: (").append(gamepad.left_stick_x).append(" : ").append(gamepad.left_stick_y).append(")").append("\n");
+        sb.append("RightStick: (").append(gamepad.right_stick_x).append(" : ").append(gamepad.right_stick_y).append(")").append("\n");
+
+        sb.append("LeftBumper: ").append(this.gamepad.left_bumper).append("\n");
+        sb.append("RightBumper: ").append(this.gamepad.right_bumper).append("\n");
+
+        sb.append("LeftTrigger: ").append(this.gamepad.left_trigger).append("\n");
+        sb.append("RightTrigger: ").append(this.gamepad.right_trigger).append("\n");
+
+        sb.append("DPadUp: ").append(this.gamepad.dpad_up).append("\n");
+        sb.append("DPadDown: ").append(this.gamepad.dpad_down).append("\n");
+        sb.append("DPadLeft: ").append(this.gamepad.dpad_left).append("\n");
+        sb.append("DPadRight: ").append(this.gamepad.dpad_right).append("\n");
+
+        sb.append("Triangle: ").append(this.gamepad.triangle).append("\n");
+        sb.append("Circle: ").append(this.gamepad.circle).append("\n");
+        sb.append("Cross: ").append(this.gamepad.cross).append("\n");
+        sb.append("Square: ").append(this.gamepad.square).append("\n");
+
+        return sb.toString();
     }
 
     public Pos getLeftStickPos() {
@@ -109,6 +136,7 @@ public class Joystick{
         List<Pair<EventType, EventValue>> pendingEvents = observer.composeEventsList();
         for(Pair<EventType, EventValue> ev : pendingEvents)
             events.notifyEvent(ev.first, ev.second);
+
     }
 
 }

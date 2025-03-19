@@ -5,14 +5,15 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.team28420.eventsystem.EventType;
 import org.firstinspires.ftc.team28420.modules.bigkostyl.BigKostyl;
 import org.firstinspires.ftc.team28420.modules.Joystick;
+import org.firstinspires.ftc.team28420.util.Pos;
+import org.firstinspires.ftc.team28420.util.Vars;
 
 @TeleOp(name = "bigkostyl test", group = "test")
 public class BKMainTeleOp extends LinearOpMode {
     BigKostyl grabber = null;
-
-    Joystick joystick = null;
 
     @Override
     public void runOpMode() {
@@ -21,17 +22,20 @@ public class BKMainTeleOp extends LinearOpMode {
         waitForStart();
 
         while(opModeIsActive()) {
-            joystick.update();
+            grabber.handleControls(gamepad1, 0);
+
             grabber.updateTelemetry();
+            telemetry.update();
         }
     }
     private void initHardware() {
-        joystick = new Joystick(gamepad1);
         grabber = new BigKostyl(
                 hardwareMap.get(DcMotor.class, "beltMotor"),
                 hardwareMap.get(Servo.class, "wristServo"),
                 hardwareMap.get(Servo.class, "clawServo"),
                 telemetry);
+
+        Vars.telemetry = telemetry;
     }
 
 

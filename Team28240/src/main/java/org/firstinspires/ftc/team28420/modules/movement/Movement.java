@@ -3,7 +3,10 @@ package org.firstinspires.ftc.team28420.modules.movement;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.team28420.util.PolarVector;
+import org.firstinspires.ftc.team28420.util.Pos;
 import org.firstinspires.ftc.team28420.util.Vars;
 import org.firstinspires.ftc.team28420.util.WheelsRatio;
 
@@ -84,4 +87,21 @@ public class Movement {
         return new WheelsRatio(lf, rf, lb, rb);
     }
 
+    public void move(Pos position, double rotation) {
+        PolarVector vector = PolarVector.getVectorFromPos(position);
+        setMotorsVelocities(getTheta(vector.theta, vector.abs, rotation).multiply(Vars.MAX_VELOCITY));
+    }
+
+    public void handleControls(Gamepad gamepad) {
+        if(Math.abs(gamepad.left_stick_x) < 0.2) gamepad.left_stick_x = 0;
+        if(Math.abs(gamepad.left_stick_y) < 0.2) gamepad.left_stick_y = 0;
+        if(Math.abs(gamepad.right_stick_x) < 0.4) gamepad.right_stick_x = 0;
+
+
+        move(new Pos(
+            gamepad.right_bumper?gamepad.left_stick_x/3:gamepad.left_stick_x,
+            gamepad.right_bumper?-gamepad.left_stick_y/3:-gamepad.left_stick_y),
+            gamepad.right_bumper?gamepad.right_stick_x/3:gamepad.right_stick_x
+        );
+    }
 }

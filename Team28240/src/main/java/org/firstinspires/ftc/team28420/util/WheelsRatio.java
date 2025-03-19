@@ -13,11 +13,12 @@ public class WheelsRatio {
 
     public static final WheelsRatio ZERO = new WheelsRatio(0, 0, 0, 0);
 
-    public void multiply(double k) {
+    public WheelsRatio multiply(double k) {
         leftFront *= k;
         rightFront *= k;
         leftBack *= k;
         rightBack *= k;
+        return this;
     }
 
     @Override

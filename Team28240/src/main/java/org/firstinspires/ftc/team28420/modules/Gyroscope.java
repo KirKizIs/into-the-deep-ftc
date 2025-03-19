@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.team28420.modules.movement;
+package org.firstinspires.ftc.team28420.modules;
 
 import com.qualcomm.hardware.bosch.BHI260IMU;
 import com.qualcomm.robotcore.hardware.IMU;

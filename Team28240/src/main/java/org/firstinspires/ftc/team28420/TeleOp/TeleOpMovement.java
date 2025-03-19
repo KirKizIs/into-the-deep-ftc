@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-import org.firstinspires.ftc.team28420.modules.movement.Gyroscope;
+import org.firstinspires.ftc.team28420.modules.Gyroscope;
 import org.firstinspires.ftc.team28420.modules.movement.Movement;
 import org.firstinspires.ftc.team28420.modules.Joystick;
 import org.firstinspires.ftc.team28420.util.Vars;

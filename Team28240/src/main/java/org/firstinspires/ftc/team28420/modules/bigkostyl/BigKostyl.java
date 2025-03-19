@@ -6,18 +6,14 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.team28420.eventsystem.EventListener;
-import org.firstinspires.ftc.team28420.eventsystem.EventType;
-import org.firstinspires.ftc.team28420.eventsystem.EventValue;
-import org.firstinspires.ftc.team28420.eventsystem.InvalidEventValueException;
-import org.firstinspires.ftc.team28420.util.Pos;
 
-public class BigKostyl implements EventListener {
-
+public class BigKostyl {
     public static Telemetry telemetry = null;
     private Belt belt = null;
     private Claws claws = null;
     private Wrist wrist = null;
+
+    private double buttonCounter = 0;
 
     public BigKostyl(DcMotor beltMotor, Servo wristServo, Servo clawsServo, Telemetry telem) {
         belt = new Belt(beltMotor);
@@ -26,32 +22,45 @@ public class BigKostyl implements EventListener {
         BigKostyl.telemetry = telem;
     }
 
+    public void setup() {
+        belt.reset();
+        wrist.reset();
+    }
+
     public void updateTelemetry() {
         telemetry.addData("Belt motor position: ", belt.getCurrentMotorPosition());
         telemetry.addData("Wrist servo position: ", wrist.getCurrentServoPosition());
         telemetry.addData("Claws servo position: ", claws.getCurrentServoPosition());
-
-        telemetry.update();
     }
+    public void handleControls(Gamepad gamepad, double dt) {
+        if(Math.abs(gamepad.right_stick_y) > 0.1)
+            belt.setVelocity((int) (gamepad.right_stick_y * Belt.ROTATION_SPEED));
+        else belt.setVelocity(0);
 
-    @Override
-    public void update(EventType ev, EventValue value) {
-        try {
-            if(ev == EventType.RightStickMoved) {
-                Pos rightStickValue = value.getStickValue();
-                belt.setVelocity((int) (-rightStickValue.y * Belt.TURN_VELOCITY));
-            } else if(ev == EventType.TrianglePressed)
-                wrist.turnUp();
-            else if(ev == EventType.CirclePressed)
-                wrist.turnStraight();
-            else if(ev == EventType.CrossPressed)
-                wrist.turnDown();
-            else if(ev == EventType.RightTriggerMoved)
-                if(value.getValue() > 0)
-                    claws.take(value.getValue());
-                else claws.leave();
-        } catch(InvalidEventValueException e) {
-            System.err.println("Unexpected EventValue type");
+        if(gamepad.triangle)
+            wrist.turnUp();
+        if(gamepad.circle)
+            wrist.turnStraight();
+        if(gamepad.cross)
+            wrist.turnDown();
+        if(gamepad.square)
+            belt.reset();
+
+        if(gamepad.dpad_up && buttonCounter > 0.1) {
+            belt.nextPosition();
+            buttonCounter = 0;
         }
+
+        if(gamepad.dpad_down && buttonCounter > 0.1) {
+            belt.prevPosition();
+            buttonCounter = 0;
+        }
+
+        if(gamepad.right_trigger > 0)
+            claws.take();
+        else claws.leave();
+
+        buttonCounter += dt;
     }
+
 }

@@ -8,13 +8,13 @@ class Claws {
         this.servo = servo;
     }
 
-    public void take(double compressionForce) {
+    public void take() {
         // TODO: calibrate
-        servo.setPosition(0.5);
+        servo.setPosition(0.069);
     }
 
     public void leave() {
-        servo.setPosition(0);
+        servo.setPosition(0.5);
     }
 
     public double getCurrentServoPosition() {
