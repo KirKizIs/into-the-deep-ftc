@@ -10,7 +10,7 @@ import org.firstinspires.ftc.team28420.util.types.PolarVector;
 
 public class Movement {
 
-    public DcMotorEx leftFront, rightFront, leftBack, rightBack;
+    public final DcMotorEx leftFront, rightFront, leftBack, rightBack;
 
     public Movement(DcMotorEx leftFront, DcMotorEx rightFront, DcMotorEx leftBack, DcMotorEx rightBack) {
         this.leftFront = leftFront;

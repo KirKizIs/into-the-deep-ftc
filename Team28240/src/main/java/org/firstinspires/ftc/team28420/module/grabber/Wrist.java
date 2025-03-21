@@ -4,12 +4,17 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.team28420.util.Vars;
 
-class Wrist {
+public class Wrist {
 
-    public Servo servo;
+    public final Servo servo;
 
     public Wrist(Servo servo) {
         this.servo = servo;
+        this.servo.scaleRange(Vars.Grabber.Wrist.TOP_POSITION, Vars.Grabber.Wrist.BOTTOM_POSITION);
+    }
+
+    public void setPosition(double position) {
+        servo.setPosition(position);
     }
 
     public void reset() {
