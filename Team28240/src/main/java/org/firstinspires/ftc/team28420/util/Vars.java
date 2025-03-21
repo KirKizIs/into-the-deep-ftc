@@ -17,6 +17,15 @@ public class Vars {
 
     public final static int MAX_VELOCITY = 4500;
 
+    public final static double WHEEL_DIAMETER = 10.0;
+
+    // TODO: Calibrate
+    // 35.5 is distance between front and rear wheel
+    // 35.5 is distance between left and right wheel
+    public final static double L_PLUS_W_CHASSIS = (35.5+35.5)/2;
+    public final static double GEARBOX_RATIO = 2.89*3.61*5.23;
+    public final static int TICKS_PER_WHEEL_TURN = (int) Math.round(28 * GEARBOX_RATIO);
+
     // GYROSCOPE //
     public final static RevHubOrientationOnRobot.LogoFacingDirection logoFacingDirection =
             RevHubOrientationOnRobot.LogoFacingDirection.UP;

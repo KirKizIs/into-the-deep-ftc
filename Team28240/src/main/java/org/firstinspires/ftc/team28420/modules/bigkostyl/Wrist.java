@@ -6,8 +6,8 @@ class Wrist {
     public Servo servo = null;
 
     private final static double UP_POSITION = 0;
-    private final static double STRAIGHT_POSITION =  0.5;
-    private final static double DOWN_POSITION = 1;
+    private final static double STRAIGHT_POSITION =  0.4;
+    private final static double DOWN_POSITION = 0.76;
     public Wrist(Servo servo) {
         this.servo = servo;
     }

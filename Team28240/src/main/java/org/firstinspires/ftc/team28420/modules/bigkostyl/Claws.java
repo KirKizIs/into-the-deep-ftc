@@ -4,17 +4,20 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 class Claws {
     public Servo servo = null;
+
+    public static final double CLOSED_SERVO_POSITION = 0.1;
+    public static final double RELEASED_SERVO_POSITION = 0.5;
+
     public Claws(Servo servo) {
         this.servo = servo;
     }
 
     public void take() {
-        // TODO: calibrate
-        servo.setPosition(0.069);
+        servo.setPosition(CLOSED_SERVO_POSITION);
     }
 
     public void leave() {
-        servo.setPosition(0.5);
+        servo.setPosition(RELEASED_SERVO_POSITION);
     }
 
     public double getCurrentServoPosition() {
