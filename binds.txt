@@ -1,0 +1,18 @@
+MOVEMENT:
+
+left_stick_x -> movement x
+left_stick_y -> movement y
+right_stick_x -> robot rotate
+left_stick_button -> gyroscope lock
+right_bumper -> slow robot rotate
+
+GRABBER:
+right_stick_button -> slow elbow rotate
+right_trigger -> claws control
+right_stick_y -> elbow rotate
+left_trigger -> wrist down
+right_trigger -> wirst up
+
+BINDS:
+
+

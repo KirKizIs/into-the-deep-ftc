@@ -5,7 +5,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.team28420.util.Vars;
-import org.firstinspires.ftc.team28420.util.WheelsRatio;
+import org.firstinspires.ftc.team28420.util.types.WheelsRatio;
+import org.firstinspires.ftc.team28420.util.types.PolarVector;
 
 public class Movement {
 
@@ -64,21 +65,21 @@ public class Movement {
         setMotorsVelocities(WheelsRatio.ZERO);
     }
 
-    public WheelsRatio getTheta(double theta, double power, double turn) {
-        double sin = Math.sin(theta - Math.PI / 4);
-        double cos = Math.cos(theta - Math.PI / 4);
+    public WheelsRatio getTheta(PolarVector vector, double turn) {
+        double sin = Math.sin(vector.theta - Math.PI / 4);
+        double cos = Math.cos(vector.theta - Math.PI / 4);
         double max = Math.max(Math.abs(sin), Math.abs(cos));
 
-        double lf = power * cos / max + turn;
-        double rf = power * sin / max - turn;
-        double lb = power * sin / max + turn;
-        double rb = power * cos / max - turn;
+        double lf = vector.abs * cos / max + turn;
+        double rf = vector.abs * sin / max - turn;
+        double lb = vector.abs * sin / max + turn;
+        double rb = vector.abs * cos / max - turn;
 
-        if ((power + Math.abs(turn)) > 1) {
-            lf /= power + Math.abs(turn);
-            rf /= power + Math.abs(turn);
-            lb /= power + Math.abs(turn);
-            lb /= power + Math.abs(turn);
+        if ((vector.abs + Math.abs(turn)) > 1) {
+            lf /= vector.abs + Math.abs(turn);
+            rf /= vector.abs + Math.abs(turn);
+            lb /= vector.abs + Math.abs(turn);
+            lb /= vector.abs + Math.abs(turn);
         }
 
         return new WheelsRatio(lf, rf, lb, rb);

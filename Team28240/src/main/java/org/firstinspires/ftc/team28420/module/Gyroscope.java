@@ -9,10 +9,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
 import org.firstinspires.ftc.team28420.util.Vars;
+import org.firstinspires.ftc.team28420.util.types.Axis;
 
 public class Gyroscope {
 
-    private BHI260IMU imu;
+    private final BHI260IMU imu;
 
     public Gyroscope(BHI260IMU imu) {
         this.imu = imu;
@@ -20,7 +21,8 @@ public class Gyroscope {
 
     public void setup() {
         IMU.Parameters orientation = new IMU.Parameters(
-                new RevHubOrientationOnRobot(Vars.logoFacingDirection, Vars.usbFacingDirection));
+                new RevHubOrientationOnRobot(
+                        Vars.Gyroscope.logoFacingDirection, Vars.Gyroscope.usbFacingDirection));
         imu.initialize(orientation);
         imu.resetYaw();
     }
@@ -29,7 +31,7 @@ public class Gyroscope {
         return imu.getRobotYawPitchRollAngles();
     }
 
-    public double getAngle(Vars.Axis axis) {
+    public double getAngle(Axis axis) {
         switch (axis) {
             case X:
                 return imu.getRobotYawPitchRollAngles().getPitch(AngleUnit.RADIANS);
@@ -40,6 +42,13 @@ public class Gyroscope {
             default:
                 return 0;
         }
+    }
+
+    // TODO: think about the name of the method
+    public double getAngleToClosestConstNumber() {
+        double targetAngle = Vars.Gyroscope.CONST_ANGLES[((int)
+                (getAngle(Axis.Z) + 25) % 360 / 45)];
+        return targetAngle;
     }
 
     @Override

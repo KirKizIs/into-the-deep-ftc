@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.team28420.util;
+package org.firstinspires.ftc.team28420.util.types;
 
 public class WheelsRatio {
 
@@ -13,11 +13,13 @@ public class WheelsRatio {
 
     public static final WheelsRatio ZERO = new WheelsRatio(0, 0, 0, 0);
 
-    public void multiply(double k) {
+    public WheelsRatio multiply(double k) {
         leftFront *= k;
         rightFront *= k;
         leftBack *= k;
         rightBack *= k;
+
+        return this;
     }
 
     @Override
