@@ -10,11 +10,10 @@ public final class Vars {
         public final static String LEFT_BACK_MOTOR_NAME = "bottomLeftMotor";
         public final static String RIGHT_BACK_MOTOR_NAME = "bottomRightMotor";
 
-        public final static int MAX_VELOCITY = 5500;
+        public final static int MAX_VELOCITY = 4600;
 
         public final static double WHEEL_DIAMETER = 10.0;
 
-        // TODO: Calibrate
         // 35.5 is distance between front and rear wheel
         // 35.5 is distance between left and right wheel
         public final static double L_PLUS_W_CHASSIS = (35.5+35.5)/2;
@@ -34,13 +33,15 @@ public final class Vars {
     public final static class Grabber {
         public final static class Claws {
             public static final String SERVO_NAME = "clawServo";
-
             public static final double MAX_POSITION = 0.5;
             public static final double MIN_POSITION = 0.2;
         }
 
-        public final static class Wrist { // TODO: calibrate
+        public final static class Wrist {
             public final static String SERVO_NAME = "wristServo";
+            public final static double TAKE_FROM_WALL_POSITION = 0.45;
+            public final static double AQUARIUM_POSITION = 0.74;
+
             public final static double UP_POSITION = 0;
             public final static double STRAIGHT_POSITION = 0.4;
             public final static double BOTTOM_POSITION = 0.76;
@@ -50,20 +51,19 @@ public final class Vars {
         public final static class Belt {
             public static final String MOTOR_NAME = "beltMotor";
             public static final int DEFAULT_POSITION = -360;
-            public static final int HIGHEST_POSITION = -1050;
-            public static final int MIDDLE_POSITION = -540;
-            public static final int LOWEST_POSITION = -1995;
-            public static final double RUN_TO_TARGET_POWER = 0.9;
+            public static final int TAKE_FROM_WALL_POSITION = -1618;
+            public static final int AQUARIUM_POSITION = -1700;
+            public static final double RUN_TO_TARGET_POWER = 1;
 
-            // TODO: Calibrate positions
-            public static final int[] BOUND_POSITIONS = {LOWEST_POSITION, MIDDLE_POSITION, HIGHEST_POSITION};
+            public static final int[] BOUND_POSITIONS = {AQUARIUM_POSITION, TAKE_FROM_WALL_POSITION};
 
-            public static final int INPUT_COEFFICIENT = 1400;
+            public static final int INPUT_COEFFICIENT = 2000;
         }
     }
 
     public final static class Etc {
         public static Telemetry telemetry;
+        public static float coef = 1;
     }
 
 }

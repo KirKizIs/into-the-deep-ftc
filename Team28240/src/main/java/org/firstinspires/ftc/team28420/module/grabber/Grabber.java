@@ -25,7 +25,7 @@ public class Grabber {
     @NonNull
     @Override
     public String toString() {
-        return "Belt motor position: " + belt.getCurrentMotorPosition() +
+        return "Belt motor position: " + belt.getCurrentPosition() +
                 " Wrist servo position: " + wrist.servo.getPosition() +
                 " Claws servo position: " + claws.servo.getPosition();
     }

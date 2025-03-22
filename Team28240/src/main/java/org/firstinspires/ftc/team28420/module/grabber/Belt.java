@@ -7,7 +7,6 @@ import org.firstinspires.ftc.team28420.util.Vars;
 
 public class Belt {
     public final DcMotor motor;
-    private int currentState = 0;
 
     public Belt(DcMotor motor) {
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -39,18 +38,12 @@ public class Belt {
         }
     }
 
-    public void nextPosition() {
-        currentState += 1;
-        if(currentState == Vars.Grabber.Belt.BOUND_POSITIONS.length)
-            currentState -= Vars.Grabber.Belt.BOUND_POSITIONS.length;
-        runToPosition(Vars.Grabber.Belt.BOUND_POSITIONS[currentState]);
+    public void toTakeFromWallPos() {
+        runToPosition(Vars.Grabber.Belt.TAKE_FROM_WALL_POSITION);
     }
 
-    public void prevPosition() {
-        currentState -= 1;
-        if(currentState == -1)
-            currentState += Vars.Grabber.Belt.BOUND_POSITIONS.length;
-        runToPosition(Vars.Grabber.Belt.BOUND_POSITIONS[currentState]);
+    public void toAquariumPos() {
+        runToPosition(Vars.Grabber.Belt.AQUARIUM_POSITION);
     }
 
     public boolean isBusy() {
@@ -61,8 +54,9 @@ public class Belt {
         runToPosition(Vars.Grabber.Belt.DEFAULT_POSITION);
     }
 
-    public double getCurrentMotorPosition() {
+    public int getCurrentPosition() {
         return motor.getCurrentPosition();
     }
+    public int getTargetPosition() {return motor.getTargetPosition();}
 
 }

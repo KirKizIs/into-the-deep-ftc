@@ -14,8 +14,8 @@ public class Joystick {
 
     public Pos getLeftStickPos() {
         return new Pos(
-            Math.abs(gamepad.left_stick_x)>0.2?gamepad.left_stick_x:0,
-            Math.abs(gamepad.left_stick_y)>0.2?-gamepad.left_stick_y:0
+            Math.abs(gamepad.left_stick_x)>0.2?gamepad.left_stick_x*0.8:0,
+            Math.abs(gamepad.left_stick_y)>0.2?-gamepad.left_stick_y*0.8:0
         );
     }
 

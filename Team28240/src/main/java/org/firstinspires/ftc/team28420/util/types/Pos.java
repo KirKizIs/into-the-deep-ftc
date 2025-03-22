@@ -6,4 +6,10 @@ public class Pos {
         this.x = x;
         this.y = y;
     }
+
+    public Pos multiply(double mult) {
+        x *= mult;
+        y *= mult;
+        return this;
+    }
 }
