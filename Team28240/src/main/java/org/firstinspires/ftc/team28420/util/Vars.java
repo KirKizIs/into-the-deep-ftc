@@ -32,12 +32,11 @@ public final class Vars {
     }
 
     public final static class Grabber {
-        // TODO: add names
         public final static class Claws {
             public static final String SERVO_NAME = "clawServo";
 
-            public static final double MAX_POSITION = 0.4; // TODO: calibrate
-            public static final double MIN_POSITION = 0.1;
+            public static final double MAX_POSITION = 0.5;
+            public static final double MIN_POSITION = 0.2;
         }
 
         public final static class Wrist { // TODO: calibrate
@@ -50,11 +49,11 @@ public final class Vars {
 
         public final static class Belt {
             public static final String MOTOR_NAME = "beltMotor";
-
-            public static final int HIGHEST_POSITION = -400;
-            public static final int MIDDLE_POSITION = -250;
-            public static final int LOWEST_POSITION = -360;
-            public static final double RUN_TO_TARGET_POWER = 0.4;
+            public static final int DEFAULT_POSITION = -360;
+            public static final int HIGHEST_POSITION = -1050;
+            public static final int MIDDLE_POSITION = -540;
+            public static final int LOWEST_POSITION = -1995;
+            public static final double RUN_TO_TARGET_POWER = 0.9;
 
             // TODO: Calibrate positions
             public static final int[] BOUND_POSITIONS = {LOWEST_POSITION, MIDDLE_POSITION, HIGHEST_POSITION};

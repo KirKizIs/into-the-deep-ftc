@@ -58,7 +58,7 @@ public class Belt {
     }
 
     public void reset() {
-        runToPosition(Vars.Grabber.Belt.LOWEST_POSITION);
+        runToPosition(Vars.Grabber.Belt.DEFAULT_POSITION);
     }
 
     public double getCurrentMotorPosition() {

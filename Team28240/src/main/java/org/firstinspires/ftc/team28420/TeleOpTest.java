@@ -69,7 +69,7 @@ public class TeleOpTest extends LinearOpMode {
     }
 
     private void clawsControls() {
-        grabber.claws.setPosition(stick.gamepad.right_trigger);
+        grabber.claws.setPosition(1-stick.gamepad.right_trigger);
     }
 
     private void wristControls() {
@@ -91,9 +91,9 @@ public class TeleOpTest extends LinearOpMode {
             dpadDownHeld = true;
         } else if(!stick.gamepad.dpad_down && dpadDownHeld) dpadDownHeld = false;
 
-        if (!grabber.belt.isBusy()) { // FIXME
-            grabber.belt.setVelocity(Math.round(stick.gamepad.right_stick_y *
+        //if (!grabber.belt.isBusy()) {
+            grabber.belt.setVelocity(Math.round(-stick.gamepad.right_stick_y *
                     Vars.Grabber.Belt.INPUT_COEFFICIENT));
-        }
+        //}
     }
 }

@@ -18,11 +18,11 @@ public class Claws {
     }
 
     public void take() {
-        servo.setPosition(1);
+        servo.setPosition(0);
     }
 
     public void leave() {
-        servo.setPosition(0);
+        servo.setPosition(1);
     }
 
 }
