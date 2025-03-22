@@ -13,11 +13,17 @@ public class Joystick {
     }
 
     public Pos getLeftStickPos() {
-        return new Pos(gamepad.left_stick_x, gamepad.left_stick_y);
+        return new Pos(
+            Math.abs(gamepad.left_stick_x)>0.2?gamepad.left_stick_x:0,
+            Math.abs(gamepad.left_stick_y)>0.2?-gamepad.left_stick_y:0
+        );
     }
 
     public Pos getRightStickPos() {
-        return new Pos(gamepad.right_stick_x, gamepad.right_stick_y);
+        return new Pos(
+                Math.abs(gamepad.right_stick_x)>0.2?gamepad.right_stick_x:0,
+                Math.abs(gamepad.right_stick_y)>0.2?-gamepad.right_stick_y:0
+        );
     }
 
 }

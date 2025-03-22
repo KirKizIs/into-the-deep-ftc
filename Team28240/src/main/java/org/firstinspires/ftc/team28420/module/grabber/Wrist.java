@@ -10,7 +10,6 @@ public class Wrist {
 
     public Wrist(Servo servo) {
         this.servo = servo;
-        this.servo.scaleRange(Vars.Grabber.Wrist.TOP_POSITION, Vars.Grabber.Wrist.BOTTOM_POSITION);
     }
 
     public void setPosition(double position) {
@@ -22,7 +21,7 @@ public class Wrist {
     }
 
     public void turnToTop() {
-        servo.setPosition(Vars.Grabber.Wrist.TOP_POSITION);
+        servo.setPosition(Vars.Grabber.Wrist.UP_POSITION);
     }
 
     public void turnToStraight() {

@@ -31,6 +31,8 @@ public class TeleOpMovement extends LinearOpMode {
             clawsControls();
             wristControls();
             beltControls();
+
+
             telemetry.update();
         }
     }
@@ -55,7 +57,6 @@ public class TeleOpMovement extends LinearOpMode {
 
     private void setup() {
         movement.setup();
-        grabber.setup();
         gyroscope.setup();
     }
 
@@ -70,7 +71,7 @@ public class TeleOpMovement extends LinearOpMode {
     }
 
     private void wristControls() {
-        double delta = Vars.Grabber.Wrist.DELTA_POSITION *
+        double delta = Vars.Grabber.Wrist.BOTTOM_POSITION *
                 ((stick.gamepad.left_trigger > 0 ? 1 : 0) +
                 (stick.gamepad.left_bumper ? -1 : 0));
         grabber.wrist.setPosition(grabber.wrist.servo.getPosition() + delta);
@@ -81,7 +82,7 @@ public class TeleOpMovement extends LinearOpMode {
         if (stick.gamepad.dpad_down) grabber.belt.prevPosition();
 
         if (!grabber.belt.isBusy()) { // FIXME
-            grabber.belt.setVelocity(Math.round(stick.gamepad.right_stick_y *
+            grabber.belt.setVelocity(Math.round(-stick.gamepad.right_stick_y *
                     Vars.Grabber.Belt.INPUT_COEFFICIENT));
         }
     }

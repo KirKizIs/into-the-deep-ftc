@@ -10,7 +10,7 @@ public class Claws {
 
     public Claws(Servo servo) {
         this.servo = servo;
-        this.servo.scaleRange(Vars.Grabber.Claws.TAKE_POSITION, Vars.Grabber.Claws.LEAVE_POSITION);
+        this.servo.scaleRange(Vars.Grabber.Claws.MIN_POSITION, Vars.Grabber.Claws.MAX_POSITION);
     }
 
     public void setPosition(double position) {
@@ -18,11 +18,11 @@ public class Claws {
     }
 
     public void take() {
-        servo.setPosition(Vars.Grabber.Claws.TAKE_POSITION);
+        servo.setPosition(1);
     }
 
     public void leave() {
-        servo.setPosition(Vars.Grabber.Claws.LEAVE_POSITION);
+        servo.setPosition(0);
     }
 
 }
