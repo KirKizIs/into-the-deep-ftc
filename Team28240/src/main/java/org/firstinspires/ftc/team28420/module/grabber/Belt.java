@@ -17,13 +17,20 @@ public class Belt {
         this.motor = motor;
     }
 
-    public void runToPosition(int position) {
+    public void runToPosition(int position, boolean blocking) {
         motor.setTargetPosition(position);
 
         if(motor.getMode() != DcMotor.RunMode.RUN_TO_POSITION)
             motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         motor.setPower(Vars.Grabber.Belt.RUN_TO_TARGET_POWER);
+
+        if(blocking) while (motor.isBusy());
+    }
+
+    public void resetEncoder() {
+        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void setVelocity(int velocity)  {
@@ -34,24 +41,24 @@ public class Belt {
         }
         else if( Math.abs(velocity) == 0) {
             if (motor.getMode() != DcMotor.RunMode.RUN_TO_POSITION)
-                runToPosition(motor.getCurrentPosition()); // Hold current position
+                runToPosition(motor.getCurrentPosition(), false); // Hold current position
         }
     }
 
     public void toTakeFromWallPos() {
-        runToPosition(Vars.Grabber.Belt.TAKE_FROM_WALL_POSITION);
+        runToPosition(Vars.Grabber.Belt.TAKE_FROM_WALL_POSITION, false);
     }
 
     public void toAquariumPos() {
-        runToPosition(Vars.Grabber.Belt.AQUARIUM_POSITION);
+        runToPosition(Vars.Grabber.Belt.AQUARIUM_POSITION, false);
     }
 
     public boolean isBusy() {
         return motor.isBusy();
     }
 
-    public void reset() {
-        runToPosition(Vars.Grabber.Belt.DEFAULT_POSITION);
+    public void toDefaultPos() {
+        runToPosition(Vars.Grabber.Belt.DEFAULT_POSITION, false);
     }
 
     public int getCurrentPosition() {

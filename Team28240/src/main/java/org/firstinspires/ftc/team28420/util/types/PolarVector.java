@@ -6,4 +6,9 @@ public class PolarVector {
         this.theta = theta;
         this.abs = abs;
     }
+    public PolarVector rotate(double angle) {
+        theta += angle;
+        theta %= Math.PI * 2;
+        return this;
+    }
 }

@@ -10,9 +10,10 @@ import org.firstinspires.ftc.team28420.module.Movement;
 import org.firstinspires.ftc.team28420.module.grabber.Grabber;
 import org.firstinspires.ftc.team28420.util.Vars;
 import org.firstinspires.ftc.team28420.util.types.PolarVector;
+import org.firstinspires.ftc.team28420.util.types.WheelsRatio;
 
-@Autonomous(name = "auto blue", group = "autonomous")
-public class AutonomousBlue extends LinearOpMode {
+@Autonomous(name = "auto povesit", group = "autonomous")
+public class AutonomousPovesit extends LinearOpMode {
 
     private Movement movement;
     private Grabber grabber;
@@ -22,17 +23,21 @@ public class AutonomousBlue extends LinearOpMode {
         initialize();
         setup();
         waitForStart();
-        ElapsedTime ep = new ElapsedTime();
 
-        while(ep.milliseconds() <= 250 && opModeIsActive())
-            movement.setMotorsVelocities(movement.getTheta(new PolarVector(3*Math.PI/2, 0.1), 0).multiply(Vars.Movement.MAX_VELOCITY));
-        ep.reset();
-        while(ep.seconds() <= 4 && opModeIsActive())
-            movement.setMotorsVelocities(movement.getTheta(new PolarVector(Math.PI, 0.1), 0).multiply(Vars.Movement.MAX_VELOCITY));
-        ep.reset();
-        while(ep.milliseconds() <= 250 && opModeIsActive())
-            movement.setMotorsVelocities(movement.getTheta(new PolarVector(Math.PI/2, 0.1), 0).multiply(Vars.Movement.MAX_VELOCITY));
-        grabber.belt.runToPosition(0);
+        grabber.belt.runToPosition(-900, false);
+        grabber.wrist.setPosition(0.65);
+        grabber.claws.take();
+
+        movement.runToEncoderPos(new WheelsRatio(1060, 1060, 1060, 1060), 3000, true);
+        grabber.belt.runToPosition(-1400, true);
+
+        grabber.claws.leave();
+
+        ElapsedTime ep = new ElapsedTime();
+        while(ep.seconds() <= 2 && opModeIsActive())
+            movement.setMotorsVelocities(movement.getTheta(new PolarVector(-Math.PI/4, 0.2), 0).multiply(Vars.Movement.MAX_VELOCITY));
+
+        grabber.belt.runToPosition(0, true);
         stop();
     }
 

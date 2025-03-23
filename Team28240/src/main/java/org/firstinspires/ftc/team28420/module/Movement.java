@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.team28420.module;
 
+import androidx.annotation.NonNull;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -85,6 +87,20 @@ public class Movement {
         return new WheelsRatio(lf, rf, lb, rb);
     }
 
+    public void runToEncoderPos(WheelsRatio ticks, int velocity, boolean blocking) {
+        setMotorsTargetPosition(new WheelsRatio(ticks.leftFront,
+                ticks.rightFront,
+                ticks.leftBack,
+                ticks.rightBack));
+        setMotorsMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        setMotorsVelocities(new WheelsRatio(velocity,
+                velocity,
+                velocity,
+                velocity));
+        if(blocking) while(isBusy());
+    }
+
     // Distance is given in centimeters
     public void passDistanceForward(double distance){
         int desiredTicks = (int) Math.round((Vars.Movement.TICKS_PER_WHEEL_TURN * distance)/(Math.PI* Vars.Movement.WHEEL_DIAMETER));
@@ -149,6 +165,15 @@ public class Movement {
                 Vars.Movement.MAX_VELOCITY));
 
         while(isBusy());
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Movement positions:\n LF (" + leftFront.getCurrentPosition() + ")\n" +
+                "RF (" + rightFront.getCurrentPosition() + ")\n" +
+                "LB (" + leftBack.getCurrentPosition() + ")\n" +
+                "RB (" + rightBack.getCurrentPosition() + ")\n";
     }
 
 }

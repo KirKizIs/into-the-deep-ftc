@@ -18,7 +18,7 @@ public class Grabber {
     }
 
     public void setup() {
-        belt.reset();
+        belt.toDefaultPos();
         wrist.reset();
     }
 

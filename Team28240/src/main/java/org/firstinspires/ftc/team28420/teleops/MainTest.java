@@ -3,7 +3,9 @@ package org.firstinspires.ftc.team28420.teleops;
 import com.qualcomm.hardware.bosch.BHI260IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.team28420.module.Gyroscope;
@@ -12,9 +14,10 @@ import org.firstinspires.ftc.team28420.module.Joystick;
 import org.firstinspires.ftc.team28420.module.grabber.Grabber;
 import org.firstinspires.ftc.team28420.util.Utility;
 import org.firstinspires.ftc.team28420.util.Vars;
+import org.firstinspires.ftc.team28420.util.types.Axis;
 
-@TeleOp(name = "TeleOp", group = "zzz")
-public class MainTeleOp extends LinearOpMode {
+@TeleOp(name = "TeleOpTest", group = "zzz")
+public class MainTest extends LinearOpMode {
 
     private Movement movement;
     private Grabber grabber;
@@ -24,6 +27,8 @@ public class MainTeleOp extends LinearOpMode {
     private boolean dpadUpHeld = false;
     private boolean dpadDownHeld = false;
 
+    private boolean hold = false;
+    DcMotor motor = null;
 
     @Override
     public void runOpMode() {
@@ -33,6 +38,19 @@ public class MainTeleOp extends LinearOpMode {
         while (opModeIsActive()) {
             if(stick.gamepad.right_bumper) Vars.Etc.coef = 0.3f;
             else Vars.Etc.coef = 1.f;
+
+            if(stick.gamepad.left_stick_y > 0.3) stick.gamepad.setLedColor(255, 0, 0, Gamepad.LED_DURATION_CONTINUOUS);
+            else if(stick.gamepad.left_stick_y < -0.3) stick.gamepad.setLedColor(0,  255, 0, Gamepad.LED_DURATION_CONTINUOUS);
+            else stick.gamepad.setLedColor(255,  255, 255, Gamepad.LED_DURATION_CONTINUOUS);
+
+            if(stick.gamepad.dpad_left) motor.setPower(0.4);
+            else if(stick.gamepad.dpad_right) motor.setPower(-0.4);
+            else motor.setPower(0);
+
+            if(!hold && stick.gamepad.triangle) {
+                motor.setPower(0.8);
+                hold = true;
+            } else if(stick.gamepad.triangle) hold = false;
 
             movementControls();
             clawsControls();
@@ -46,6 +64,7 @@ public class MainTeleOp extends LinearOpMode {
     }
 
     public void initialize() {
+        motor = hardwareMap.get(DcMotor.class, "motor1");
         movement = new Movement(
                 hardwareMap.get(DcMotorEx.class, Vars.Movement.LEFT_FRONT_MOTOR_NAME),
                 hardwareMap.get(DcMotorEx.class, Vars.Movement.RIGHT_FRONT_MOTOR_NAME),
@@ -71,7 +90,7 @@ public class MainTeleOp extends LinearOpMode {
 
     private void movementControls() {
         movement.setMotorsVelocities(movement.getTheta(Utility.getVectorFromPos(
-                stick.getLeftStickPos().multiply(Vars.Etc.coef)), Math.abs(
+                stick.getLeftStickPos().multiply(Vars.Etc.coef)).rotate(-gyroscope.getAngle(Axis.Y)), Math.abs(
                 gamepad1.right_stick_x) > 0.6 ? gamepad1.right_stick_x * Vars.Etc.coef : 0).multiply(Vars.Movement.MAX_VELOCITY));
     }
 
@@ -106,6 +125,8 @@ public class MainTeleOp extends LinearOpMode {
 
             dpadDownHeld = true;
         } else if(!stick.gamepad.dpad_down && dpadDownHeld) dpadDownHeld = false;
+
+        if(stick.gamepad.square) grabber.belt.resetEncoder();
 
         grabber.belt.setVelocity(Math.round(-stick.gamepad.right_stick_y * Vars.Etc.coef *
                 Vars.Grabber.Belt.INPUT_COEFFICIENT));
