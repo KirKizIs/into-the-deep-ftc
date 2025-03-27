@@ -12,9 +12,9 @@ import org.firstinspires.ftc.team28420.module.Gyroscope;
 import org.firstinspires.ftc.team28420.module.Movement;
 import org.firstinspires.ftc.team28420.module.Joystick;
 import org.firstinspires.ftc.team28420.module.grabber.Grabber;
-import org.firstinspires.ftc.team28420.util.Utility;
 import org.firstinspires.ftc.team28420.util.Vars;
 import org.firstinspires.ftc.team28420.util.types.Axis;
+import org.firstinspires.ftc.team28420.util.types.PolarVector;
 
 @TeleOp(name = "TeleOpTest", group = "zzz")
 public class MainTest extends LinearOpMode {
@@ -71,7 +71,7 @@ public class MainTest extends LinearOpMode {
                 hardwareMap.get(DcMotorEx.class, Vars.Movement.LEFT_BACK_MOTOR_NAME),
                 hardwareMap.get(DcMotorEx.class, Vars.Movement.RIGHT_BACK_MOTOR_NAME));
         grabber = new Grabber(
-                hardwareMap.get(DcMotorEx.class, Vars.Grabber.Belt.MOTOR_NAME),
+                hardwareMap.get(DcMotorEx.class, Vars.Grabber.Intake.MOTOR_NAME),
                 hardwareMap.get(Servo.class, Vars.Grabber.Wrist.SERVO_NAME),
                 hardwareMap.get(Servo.class, Vars.Grabber.Claws.SERVO_NAME));
         gyroscope = new Gyroscope(
@@ -89,7 +89,7 @@ public class MainTest extends LinearOpMode {
     }
 
     private void movementControls() {
-        movement.setMotorsVelocities(movement.getTheta(Utility.getVectorFromPos(
+        movement.setMotorsVelocities(movement.getTheta(PolarVector.fromPos(
                 stick.getLeftStickPos().multiply(Vars.Etc.coef)).rotate(-gyroscope.getAngle(Axis.Y)), Math.abs(
                 gamepad1.right_stick_x) > 0.6 ? gamepad1.right_stick_x * Vars.Etc.coef : 0).multiply(Vars.Movement.MAX_VELOCITY));
     }
@@ -129,6 +129,6 @@ public class MainTest extends LinearOpMode {
         if(stick.gamepad.square) grabber.intake.resetEncoder();
 
         grabber.intake.setVelocity(Math.round(-stick.gamepad.right_stick_y * Vars.Etc.coef *
-                Vars.Grabber.Belt.INPUT_COEFFICIENT));
+                Vars.Grabber.Intake.INPUT_COEFFICIENT));
     }
 }

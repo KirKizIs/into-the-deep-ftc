@@ -23,7 +23,7 @@ public class Intake {
         if(motor.getMode() != DcMotor.RunMode.RUN_TO_POSITION)
             motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        motor.setPower(Vars.Grabber.Belt.RUN_TO_TARGET_POWER);
+        motor.setPower(Vars.Grabber.Intake.RUN_TO_TARGET_POWER);
 
         if(blocking) while(motor.isBusy());
     }
@@ -48,11 +48,11 @@ public class Intake {
     }
 
     public void toTakeFromWallPos() {
-        runToPosition(Vars.Grabber.Belt.TAKE_FROM_WALL_POSITION, false);
+        runToPosition(Vars.Grabber.Intake.TAKE_FROM_WALL_POSITION, false);
     }
 
     public void toAquariumPos() {
-        runToPosition(Vars.Grabber.Belt.AQUARIUM_POSITION, false);
+        runToPosition(Vars.Grabber.Intake.AQUARIUM_POSITION, false);
     }
 
     public boolean isBusy() {
@@ -60,7 +60,7 @@ public class Intake {
     }
 
     public void toDefaultPos() {
-        runToPosition(Vars.Grabber.Belt.DEFAULT_POSITION, false);
+        runToPosition(Vars.Grabber.Intake.DEFAULT_POSITION, false);
     }
 
     public int getCurrentPosition() {

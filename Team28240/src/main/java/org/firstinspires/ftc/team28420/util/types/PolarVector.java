@@ -11,4 +11,7 @@ public class PolarVector {
         theta %= Math.PI * 2;
         return this;
     }
+    public static PolarVector fromPos(Pos pos) {
+        return new PolarVector(Math.atan2(pos.y, pos.x), Math.hypot(pos.x, pos.y));
+    }
 }

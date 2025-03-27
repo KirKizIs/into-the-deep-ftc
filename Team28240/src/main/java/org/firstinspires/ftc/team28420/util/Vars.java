@@ -48,7 +48,7 @@ public final class Vars {
             public final static double START_POSITION = 0.9;
         }
 
-        public final static class Belt {
+        public final static class Intake {
             public static final String MOTOR_NAME = "beltMotor";
             public static final int DEFAULT_POSITION = -360;
             public static final int TAKE_FROM_WALL_POSITION = -1618;

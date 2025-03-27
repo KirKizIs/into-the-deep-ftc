@@ -44,7 +44,7 @@ public class AutonomousParking extends LinearOpMode {
                 hardwareMap.get(DcMotorEx.class, Vars.Movement.RIGHT_BACK_MOTOR_NAME));
 
         grabber = new Grabber(
-                hardwareMap.get(DcMotorEx.class, Vars.Grabber.Belt.MOTOR_NAME),
+                hardwareMap.get(DcMotorEx.class, Vars.Grabber.Intake.MOTOR_NAME),
                 hardwareMap.get(Servo.class, Vars.Grabber.Wrist.SERVO_NAME),
                 hardwareMap.get(Servo.class, Vars.Grabber.Claws.SERVO_NAME));
 
