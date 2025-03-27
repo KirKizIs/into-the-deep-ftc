@@ -19,7 +19,8 @@ public class Grabber {
 
     public void setup() {
         belt.toDefaultPos();
-        wrist.reset();
+        wrist.turnToBottom();
+        claws.take();
     }
 
     @NonNull

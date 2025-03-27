@@ -25,7 +25,7 @@ public class Belt {
 
         motor.setPower(Vars.Grabber.Belt.RUN_TO_TARGET_POWER);
 
-        if(blocking) while (motor.isBusy());
+        if(blocking) while(motor.isBusy());
     }
 
     public void resetEncoder() {
@@ -35,8 +35,10 @@ public class Belt {
 
     public void setVelocity(int velocity)  {
         if (Math.abs(velocity) > 0) {
+
             if (motor.getMode() != DcMotor.RunMode.RUN_USING_ENCODER)
                 motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
             ((DcMotorEx) motor).setVelocity(velocity);
         }
         else if( Math.abs(velocity) == 0) {
