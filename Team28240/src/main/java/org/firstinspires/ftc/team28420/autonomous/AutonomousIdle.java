@@ -4,12 +4,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.team28420.module.Movement;
 import org.firstinspires.ftc.team28420.module.grabber.Grabber;
 import org.firstinspires.ftc.team28420.util.Vars;
-import org.firstinspires.ftc.team28420.util.types.PolarVector;
 
 @Autonomous(name = "auto idle", group = "autonomous")
 public class AutonomousIdle extends LinearOpMode {
@@ -22,7 +20,7 @@ public class AutonomousIdle extends LinearOpMode {
         initialize();
         setup();
         waitForStart();
-        grabber.belt.toDefaultPos();
+        grabber.intake.toDefaultPos();
 
         stop();
     }

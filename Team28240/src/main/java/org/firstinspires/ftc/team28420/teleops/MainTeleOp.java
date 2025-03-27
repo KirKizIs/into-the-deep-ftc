@@ -85,14 +85,14 @@ public class MainTeleOp extends LinearOpMode {
                         (stick.gamepad.left_bumper ? -1 : 0));
         grabber.wrist.setPosition(grabber.wrist.servo.getPosition() + delta);
 
-        if(stick.gamepad.triangle) grabber.wrist.turnToTop();
+        if(stick.gamepad.triangle) grabber.wrist.toTopPos();
         else if(stick.gamepad.circle) grabber.wrist.turnToStraight();
         else if(stick.gamepad.cross) grabber.wrist.turnToBottom();
     }
 
     private void beltControls() {
         if (stick.gamepad.dpad_up && !dpadUpHeld) {
-            grabber.belt.toTakeFromWallPos();
+            grabber.intake.toTakeFromWallPos();
 
             grabber.wrist.setPosition(Vars.Grabber.Wrist.TAKE_FROM_WALL_POSITION);
 
@@ -100,14 +100,14 @@ public class MainTeleOp extends LinearOpMode {
         } else if(!stick.gamepad.dpad_up && dpadUpHeld) dpadUpHeld = false;
 
         if (stick.gamepad.dpad_down && !dpadDownHeld) {
-            grabber.belt.toAquariumPos();
+            grabber.intake.toAquariumPos();
 
             grabber.wrist.setPosition(Vars.Grabber.Wrist.AQUARIUM_POSITION);
 
             dpadDownHeld = true;
         } else if(!stick.gamepad.dpad_down && dpadDownHeld) dpadDownHeld = false;
 
-        grabber.belt.setVelocity(Math.round(-stick.gamepad.right_stick_y * Vars.Etc.coef *
+        grabber.intake.setVelocity(Math.round(-stick.gamepad.right_stick_y * Vars.Etc.coef *
                 Vars.Grabber.Belt.INPUT_COEFFICIENT));
     }
 }

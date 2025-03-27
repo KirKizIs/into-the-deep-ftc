@@ -5,10 +5,10 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.team28420.util.Vars;
 
-public class Belt {
+public class Intake {
     public final DcMotor motor;
 
-    public Belt(DcMotor motor) {
+    public Intake(DcMotor motor) {
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 

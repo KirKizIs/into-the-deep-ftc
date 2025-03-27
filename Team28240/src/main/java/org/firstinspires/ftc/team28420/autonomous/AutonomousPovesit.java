@@ -24,12 +24,12 @@ public class AutonomousPovesit extends LinearOpMode {
         setup();
         waitForStart();
 
-        grabber.belt.runToPosition(-900, false);
+        grabber.intake.runToPosition(-900, false);
         grabber.wrist.setPosition(0.65);
         grabber.claws.take();
 
         movement.runToEncoderPos(new WheelsRatio(1060, 1060, 1060, 1060), 3000, true);
-        grabber.belt.runToPosition(-1400, true);
+        grabber.intake.runToPosition(-1400, true);
 
         grabber.claws.leave();
 
@@ -37,7 +37,7 @@ public class AutonomousPovesit extends LinearOpMode {
         while(ep.seconds() <= 2 && opModeIsActive())
             movement.setMotorsVelocities(movement.getTheta(new PolarVector(-Math.PI/4, 0.2), 0).multiply(Vars.Movement.MAX_VELOCITY));
 
-        grabber.belt.runToPosition(0, true);
+        grabber.intake.runToPosition(0, true);
         stop();
     }
 

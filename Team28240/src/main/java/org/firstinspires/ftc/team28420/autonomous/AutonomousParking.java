@@ -32,7 +32,7 @@ public class AutonomousParking extends LinearOpMode {
         ep.reset();
         while(ep.milliseconds() <= 250 && opModeIsActive())
             movement.setMotorsVelocities(movement.getTheta(new PolarVector(Math.PI/2, 0.1), 0).multiply(Vars.Movement.MAX_VELOCITY));
-        grabber.belt.runToPosition(0, true);
+        grabber.intake.runToPosition(0, true);
         stop();
     }
 

@@ -16,11 +16,7 @@ public class Wrist {
         servo.setPosition(position);
     }
 
-    public void reset() {
-        servo.setPosition(Vars.Grabber.Wrist.START_POSITION);
-    }
-
-    public void turnToTop() {
+    public void toTopPos() {
         servo.setPosition(Vars.Grabber.Wrist.UP_POSITION);
     }
 

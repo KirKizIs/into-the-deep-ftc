@@ -7,18 +7,18 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Grabber {
 
-    public final Belt belt;
+    public final Intake intake;
     public final Wrist wrist;
     public final Claws claws;
 
     public Grabber(DcMotor beltMotor, Servo wristServo, Servo clawsServo) {
-        belt = new Belt(beltMotor);
+        intake = new Intake(beltMotor);
         wrist = new Wrist(wristServo);
         claws = new Claws(clawsServo);
     }
 
     public void setup() {
-        belt.toDefaultPos();
+        intake.toDefaultPos();
         wrist.turnToBottom();
         claws.take();
     }
@@ -26,7 +26,7 @@ public class Grabber {
     @NonNull
     @Override
     public String toString() {
-        return "Belt motor position: " + belt.getCurrentPosition() +
+        return "Belt motor position: " + intake.getCurrentPosition() +
                 " Wrist servo position: " + wrist.servo.getPosition() +
                 " Claws servo position: " + claws.servo.getPosition();
     }

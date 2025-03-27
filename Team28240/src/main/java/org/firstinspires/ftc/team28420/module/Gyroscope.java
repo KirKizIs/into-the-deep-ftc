@@ -50,6 +50,7 @@ public class Gyroscope {
                 (getAngle(Axis.Z) + 25) % 360 / 45)];
         return targetAngle;
     }
+    // почему гіроскоп на мастере пішется???
 
     @Override
     public String toString() {
